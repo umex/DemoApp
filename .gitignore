@@ -457,3 +457,5 @@ appsettings.json
 demoapp.db
 server.crt
 server.key
+API/demoapp.db-shm
+API/demoapp.db-wal

@@ -132,17 +132,7 @@ export class BooksService {
       })
     )
   }
-/*
-  lendBook(book: Book) {
-    //razišči zakaj ne gre PUT - zakaj prihaja do CORS errorja
-    return this.http.post<Book>(this.baseUrl + '/book', book, httpOptions).pipe(
-      map(() => {
-        const index = this.books.indexOf(book);
-        this.books[index] = book;
-      })
-    )
-  }
-*/
+
   deleteBook(bookId: number){
     console.log('bookid:', this.baseUrl + '/book/delete/'+ bookId)
     return this.http.post(this.baseUrl + '/book/delete/'+ bookId, httpOptions);

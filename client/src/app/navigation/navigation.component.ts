@@ -28,7 +28,6 @@ export class NavigationComponent implements OnInit {
       console.log(error)
       this.toastr.error(error.error)
     });
-    //console.log(this.model);
   }
 
   logout(){

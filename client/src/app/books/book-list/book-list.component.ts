@@ -43,7 +43,6 @@ export class BookListComponent implements OnInit {
   pageChanged(event:any){
       this.bookParams.pageNumber = event.page
       this.loadBooks();
-      //this.books = event.books
   }
 
   deleteBook(bookId:number){
@@ -52,7 +51,6 @@ export class BookListComponent implements OnInit {
       this.loadBooks(true);
 
     });
-    //this.loadBooks();
   }
 
 

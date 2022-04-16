@@ -1,4 +1,3 @@
-using API.DTO;
 
 namespace API.Entities
 {

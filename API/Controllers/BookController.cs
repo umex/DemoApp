@@ -7,11 +7,9 @@ using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    //[Authorize]oo
     public class BookController : BaseApiController
     {
         private readonly IBookRepostiory _bookRepostiory;
@@ -43,24 +41,6 @@ namespace API.Controllers
 
             return _mapper.Map<BookDto>(book);
         }
-        
-
-        /*
-        [HttpPut]
-        public async Task<ActionResult> UpdateBook(BookDto bookDto)
-        {   
-            //takole bi loh dostopal do usernamea ki je shranjen v tokenu
-            //var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var book = await _bookRepostiory.GetBooksByIdAsync(bookDto.Id);
-            //razišči zakaj ne dela brez <BookDto, Book>
-            _mapper.Map<BookDto, Book>(bookDto, book);
-            _bookRepostiory.Update(book);
-
-            if (await _bookRepostiory.SaveAllAsync()) return NoContent();
-
-            return BadRequest("Failed to update user");
-        }
-        */
 
         [Authorize]
         [HttpPost]

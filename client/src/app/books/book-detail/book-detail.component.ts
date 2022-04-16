@@ -49,6 +49,11 @@ export class BookDetailComponent implements OnInit {
     })
   }
 
+  return(){
+    this.route.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+   this.route.navigate(['books']));
+  }
+
   lendBook() {
     this.book.lentOut = true;
     this.book.lendFrom = this.lendForm.get('lendFrom').value

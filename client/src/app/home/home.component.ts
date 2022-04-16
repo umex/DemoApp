@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +11,12 @@ export class HomeComponent implements OnInit {
 
   registerMode = false;
   users: any
+  currentUser$ = this.accountService.currentUser$;
 
-  constructor(/*private http: HttpClient*/) { }
+  constructor(private accountService:AccountService) { }
 
   ngOnInit(): void {
-    //this.getUsers();
+    this.currentUser$ = this.accountService.currentUser$
   }
 
   registerToggle(){

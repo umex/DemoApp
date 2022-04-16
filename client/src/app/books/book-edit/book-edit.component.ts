@@ -18,13 +18,13 @@ export class BookEditComponent implements OnInit {
   book: Book
   user: User;
   id:Number
-  /*
+
   @HostListener('window:beforeunload', ['$event']) unloadNotification($event: any) {
     if (this.formEdit.dirty) {
       $event.returnValue = true;
     }
   }
-  */
+
   constructor(private bookService: BooksService, private accountService: AccountService,
     private toastr: ToastrService, private route: ActivatedRoute) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
