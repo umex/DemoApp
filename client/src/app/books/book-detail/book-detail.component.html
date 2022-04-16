@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="card border-primary mb-3" *ngIf="book">
+    <div class="card-header">{{book.author}}</div>
+    <div class="card-body">
+      <h4 class="card-title">{{book.title}}</h4>
+      <p class="card-text">{{book.description}}</p>
+
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="book">
+  <div *ngIf="book.lentOut">
+    <div class="alert alert-dismissible alert-warning" >
+      Book is currently lent out. It will be available again from <strong>{{book.lendTo}}</strong>
+    </div>
+    <button class="btn btn-lg btn-primary m-2" type="button" routerLink="/books">Back</button>
+  </div>
+  <div *ngIf="!book.lentOut">
+    <form [formGroup]="lendForm" (ngSubmit)="lendForm.valid && lendBook()" autocomplete="off">
+      <!--<app-date-input [formControl]='lendForm.controls["lentFrom"]' [label]='"Start lending:"' ngDefaultControl></app-date-input>-->
+      <app-date-input [formControl]='lendForm.controls["lendFrom"]' [label]='"Start lending:"' [minDate]='minDate' ngDefaultControl></app-date-input>
+      <div class="form-group text-center">
+        <button [disabled]="!lendForm.valid || book.lentOut" class="btn btn-lg btn-primary m-2" type="submit">Lend out</button>
+        <button class="btn btn-lg btn-primary m-2" type="button" routerLink="/books">Back</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--
+<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+  <h2 class="text-center text-primary">Sign up</h2>
+  <hr>
+ <app-date-input [formControl]='registerForm.controls["created"]' [label]='"Created"' ngDefaultControl ></app-date-input>
+
+  <div class="row mt-5" *ngIf="validationErrors.length > 0">
+    <ul class="text-danger">
+        <li *ngFor="let error of validationErrors">
+            {{error}}
+        </li>
+    </ul>
+</div>
+  <div class="form-group text-center">
+      <button [disabled]="!registerForm.valid" class="btn btn-success mr-2" type="submit">Register</button>
+      <button class="btn btn-default mr-2"  type="button">Cancel</button>
+  </div>
+</form>
+-->
