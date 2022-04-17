@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
-    <a class="navbar-brand" routerLink="/" routerLinkActive="active">Demo Library</a>
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active">{{'TITLE' | translate}}</a>
     <ul class="navbar-nav me-auto" *ngIf="currentUser$ | async">
       <li class="nav-item">
-        <a class="nav-link " routerLink="/" routerLinkActive="active">Home</a>
+        <a class="nav-link " routerLink="/" routerLinkActive="active">{{'HOME' | translate}}</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" routerLink="/books" routerLinkActive="active">Books</a>
+        <a class="nav-link" routerLink="/books" routerLinkActive="active">{{'BOOKS' | translate}}</a>
       </li>
       <!--
       <li class="nav-item">
@@ -18,20 +18,44 @@
     </ul>
 
     <div class="dropdown" *ngIf="(currentUser$ | async) as user" dropdown >
-        <a class="dropdown-toggle text-light" dropdownToggle>Wellcome {{user.username}}</a>
+        <a class="dropdown-toggle text-light" dropdownToggle>{{'HELLO' | translate}} {{user.username}}</a>
         <div class="dropdown-menu mt-3" *dropdownMenu>
-            <!--<a class="dropdown-item">Edit Profile</a>-->
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" (click)="logout()" >Logout</a>
+            <a class="dropdown-item" (click)="logout()" >{{'LOGOUT' | translate}} </a>
         </div>
     </div>
 
+      <!--<a class="dropdown-item">Edit Profile</a>-->
     <form *ngIf="(currentUser$ | async) === null" #loginFOrm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
-      <input class="form-control mr-sm-2" name="username" [(ngModel)]="model.username" type="text" placeholder="Username">
-      <input class="form-control mr-sm-2" name="password" [(ngModel)]="model.password" type="password" placeholder="Password">
-      <button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
+      <input class="form-control mr-sm-2" name="username" [(ngModel)]="model.username" type="text" placeholder="{{'USERNAME' | translate}}">
+      <input class="form-control mr-sm-2" name="password" [(ngModel)]="model.password" type="password" placeholder="{{'PASSWORD' | translate}}">
+      <button class="btn btn-light my-2 my-sm-0" type="submit">{{'LOGIN' | translate}}</button>
      <!-- <button class="btn btn-outline-success my-2 my-sm-0 ml-2" type="">Register</button>-->
     </form>
+
+    <div class="btn-group" dropdown>
+      <button id="button-animated" dropdownToggle type="button" class="btn dropdown-toggle" aria-controls="dropdown-animated">
+        <i class="fa fa-globe" aria-hidden="true"></i>
+         {{ siteLanguage  }}
+        <span class="caret"></span>
+      </button>
+      <ul
+        id="dropdown-animated"
+        *dropdownMenu
+        class="dropdown-menu dropdown-menu-right"
+        role="menu"
+        aria-labelledby="button-animated"
+      >
+        <ng-container *ngFor="let language of languageList">
+          <li role="menuitem">
+            <a
+            class="dropdown-item"
+            (click)="changeSiteLanguage(language.code)">
+              {{ language.label }}
+            </a>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
 
   </div>
 </nav>

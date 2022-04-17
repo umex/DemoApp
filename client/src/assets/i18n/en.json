@@ -1,0 +1,13 @@
+{
+  "TITLE": "Demo Library",
+  "MOTO": "Find your book",
+  "HOME": "Home",
+  "BOOKS": "Books",
+  "HELLO": "Welcome",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "LOGIN":"Login",
+  "LOGOUT": "Logout",
+  "CLICK_HERE": "Click Here",
+  "REGISTER": "Register"
+}
