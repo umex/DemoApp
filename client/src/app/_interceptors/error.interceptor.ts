@@ -34,7 +34,7 @@ export class ErrorInterceptor implements HttpInterceptor {
               }
               break;
             case 401:
-              this.toastr.error(error.statusText, error.status);
+              this.toastr.error("Authentication error", error.status);
               break;
             case 403:
                 this.toastr.error("You don't have permission for this action", error.status);
