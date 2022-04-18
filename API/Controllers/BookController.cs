@@ -15,13 +15,11 @@ namespace API.Controllers
         private readonly IBookRepostiory _bookRepostiory;
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
-        private readonly DataContext _context;
-        public BookController(IBookRepostiory bookRepostiory, IMapper mapper, IUserRepository userRepository, DataContext context)
+        public BookController(IBookRepostiory bookRepostiory, IMapper mapper, IUserRepository userRepository)
         {
             _bookRepostiory = bookRepostiory;
             _mapper = mapper;
             _userRepository = userRepository;
-            _context = context;
         }
  
         [HttpGet]
@@ -29,9 +27,6 @@ namespace API.Controllers
             var books = await _bookRepostiory.GetBooksPagedAsync(bookParams);
             //response je dostopen v vseh controllerjih
             Response.AddPaginationHeader(books.CurrentPage, books.PageSize, books.TotalCount, books.TotalPages);
-            //var booksToReturn = _mapper.Map<IEnumerable<BookDto>>(books);
-            //ne dela brez ok
-            //return Ok(booksToReturn);
             return Ok(books);
         }
 

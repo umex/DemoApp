@@ -9,11 +9,10 @@ namespace API.Interfaces
         Task<AppUser> GetUserByIdAsync(int id);
         Task<AppUser> GetUserByUsernameAsync(string username);
 
-        Task<IEnumerable<UserDto>> GetMembersAsync();
+        Task<IEnumerable<UserDto>> GetUserDtoAsync();
 
         Task<bool> SaveAllAsync();
 
         void Update(AppUser user);
-        
     }
 }
