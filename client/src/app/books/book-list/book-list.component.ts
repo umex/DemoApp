@@ -24,7 +24,8 @@ export class BookListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadBooks();
+    console.log("ngOnInit")
+    this.loadBooks(true);
   }
 
   loadBooks(force:boolean = false){

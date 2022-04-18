@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { ReplaySubject } from 'rxjs';
 import {map} from 'rxjs/operators'
 import { environment } from 'src/environments/environment';
@@ -25,7 +26,7 @@ export class AccountService {
   //kdorkoli spreminjal
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
 
   }
 
@@ -50,6 +51,7 @@ export class AccountService {
   logout(){
     localStorage.removeItem('user');
     this.currentUserSource.next(null)
+    this.router.navigateByUrl('/');
   }
 
   register(model:any){

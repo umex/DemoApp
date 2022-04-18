@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Data.Migrations
 {
-    public partial class InitialCreation : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -182,35 +182,6 @@ namespace API.Data.Migrations
                         principalColumn: "Id");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "LibraryLedgers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: true),
-                    BookId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Created = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LentFrom = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LentTo = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LentOut = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Overdue = table.Column<bool>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_LibraryLedgers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_LibraryLedgers_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_LibraryLedgers_Books_BookId",
-                        column: x => x.BookId,
-                        principalTable: "Books",
-                        principalColumn: "Id");
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -252,16 +223,6 @@ namespace API.Data.Migrations
                 name: "IX_Books_UserId",
                 table: "Books",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LibraryLedgers_BookId",
-                table: "LibraryLedgers",
-                column: "BookId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_LibraryLedgers_UserId",
-                table: "LibraryLedgers",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -282,13 +243,10 @@ namespace API.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "LibraryLedgers");
+                name: "Books");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "Books");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

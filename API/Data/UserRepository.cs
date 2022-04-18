@@ -26,7 +26,20 @@ namespace API.Data
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
-            return await _context.Users.Include(b =>b.Books).SingleOrDefaultAsync(x => x.Id == id);
+            var user =await _context.Users.Include(b =>b.Books).SingleOrDefaultAsync(x => x.Id == id);
+
+            return user;
+            //return await _context.Users.Include(b =>b.Books).SingleOrDefaultAsync(x => x.Id == id);
+            /*
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.Id == id);
+            await _context.Entry(user).Reference(b => b.Books).LoadAsync();
+            await _context.Entry(user).Collection(b => b.Books).LoadAsync();
+            return user;
+            */
+
+            //return await _context.Users.Include("Books").SingleOrDefaultAsync(x => x.Id == id);
+            
+
         }
 
         public async Task<AppUser> GetUserByUsernameAsync(string username)

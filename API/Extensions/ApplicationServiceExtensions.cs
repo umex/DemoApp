@@ -14,7 +14,6 @@ namespace API.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBookRepostiory, BookRepository>();
-            services.AddScoped<ILibraryLedgerRepository, LibraryLedgerRepository>();
             services.AddAutoMapper(typeof(AutoMap).Assembly);
             services.AddDbContext<DataContext>(options =>
             {

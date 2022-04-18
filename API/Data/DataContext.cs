@@ -41,6 +41,5 @@ namespace API.Data
         //tega ne rabimo vec ker nam identity to provida
         //public DbSet<AppUser> Users { get; set; }
         public DbSet<Book> Books { get; set; }
-        public DbSet<LibraryLedger> LibraryLedgers { get; set; }
     }
 }

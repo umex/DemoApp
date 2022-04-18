@@ -67,29 +67,15 @@ namespace API.Controllers
             var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
             var book = await _bookRepostiory.GetBooksByIdAsync(bookDto.Id);
             //razišči zakaj ne dela brez <BookDto, Book>
-            _mapper.Map<BookDto, Book>(bookDto, book);
+            _mapper.Map(bookDto, book);
 
             user.Books.Add(book);
             _bookRepostiory.Update(book);
-            //_userRepository.Update(user);
-        
-            var userR = false;
-            var bookR = false;
-
+            _userRepository.Update(user);
 
             if(await _userRepository.SaveAllAsync()){
-                userR = true;
+                 return NoContent();
             }
-
-
-            if (await _bookRepostiory.SaveAllAsync() ) {
-                bookR = true;
-            }
-
-            if(userR && bookR){
-                return NoContent();
-            }
-
             return BadRequest("Failed to update book");
         }
 
@@ -105,7 +91,7 @@ namespace API.Controllers
 
             if (await _bookRepostiory.SaveAllAsync()) return NoContent();
 
-            return BadRequest("Failed to update user");
+            return BadRequest("Failed to delete book");
         }
         
     }

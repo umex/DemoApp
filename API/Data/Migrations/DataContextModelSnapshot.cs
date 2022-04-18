@@ -164,42 +164,6 @@ namespace API.Data.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("API.Entities.LibraryLedger", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("BookId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LentFrom")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("LentOut")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LentTo")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("Overdue")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("LibraryLedgers");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -308,21 +272,6 @@ namespace API.Data.Migrations
                     b.HasOne("API.Entities.AppUser", "User")
                         .WithMany("Books")
                         .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("API.Entities.LibraryLedger", b =>
-                {
-                    b.HasOne("API.Entities.Book", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId");
-
-                    b.HasOne("API.Entities.AppUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Book");
 
                     b.Navigation("User");
                 });

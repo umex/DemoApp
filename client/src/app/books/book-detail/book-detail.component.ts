@@ -51,7 +51,8 @@ export class BookDetailComponent implements OnInit {
 
   return(){
     this.route.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-   this.route.navigate(['books']));
+      this.route.navigate(['books'])
+    );
   }
 
   lendBook() {
@@ -63,8 +64,6 @@ export class BookDetailComponent implements OnInit {
 
     this.bookService.lendBook(this.book).subscribe(() => {
       this.toastr.success('Book lend out successfully');
-      this.route.navigateByUrl('/book')
-      this.lendForm.reset(this.book);
     })
   }
 
