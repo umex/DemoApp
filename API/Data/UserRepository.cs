@@ -17,7 +17,7 @@ namespace API.Data
              _mapper = mapper;
         }
 
-        public async Task<IEnumerable<UserDto>> GetMembersAsync()
+        public async Task<IEnumerable<UserDto>> GetUserDtoAsync()
         {
            return await _context.Users 
                 .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
