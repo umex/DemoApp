@@ -16,6 +16,7 @@ namespace API
         public Startup(IConfiguration config)
         {
             _config = config;
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -53,6 +54,8 @@ namespace API
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            
+
 
             app.UseEndpoints(endpoints =>
             {

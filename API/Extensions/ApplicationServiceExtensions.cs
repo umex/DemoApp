@@ -17,7 +17,8 @@ namespace API.Extensions
             services.AddAutoMapper(typeof(AutoMap).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                //options.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                options.UseNpgsql(config.GetConnectionString("DefaultConnection"));
             });
 
             return services;
