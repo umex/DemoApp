@@ -39,12 +39,15 @@ export class AccountService {
           localStorage.setItem('user', JSON.stringify(user))
           this.currentUserSource.next(user);
         }
-
       })
     )
   }
 
   setCurrentUser(user:User){
+    user.roles = [];
+    const roles = this.getToken(user.token).role;
+    console.log(roles);
+    Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
     this.currentUserSource.next(user);
   }
 
@@ -63,6 +66,10 @@ export class AccountService {
         }
         return user;
       })
-
     )}
+
+    getToken(token) {
+      //atob converts from base64
+      return JSON.parse(atob(token.split('.')[1]));
+    }
 }

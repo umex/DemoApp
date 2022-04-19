@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { catchError, map, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Book } from '../_models/book';
 import { BookParams } from '../_models/bookParams';
@@ -120,6 +120,9 @@ export class BooksService {
       map(() => {
         const index = this.books.indexOf(book);
         this.books[index] = book;
+      }),
+      catchError((err, caught) => {
+        return "error";
       })
     )
   }

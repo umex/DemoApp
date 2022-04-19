@@ -1,3 +1,6 @@
+using System.ComponentModel.DataAnnotations;
+using API.Helpers;
+
 namespace API.DTO
 {
     public class BookDto
@@ -9,7 +12,10 @@ namespace API.DTO
         public Boolean LentOut  { get; set; } 
         public UserDto User { get; set; }
 
+        [DateLendFromValidation]
+        [Display(Name = "LendFrom")]
         public DateTime LendFrom { get; set; }
+        [DateLendToValidation("LendFrom")]
         public DateTime LendTo { get; set; }
     }
 }

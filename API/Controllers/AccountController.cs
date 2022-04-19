@@ -72,13 +72,11 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserRegisterDto>> Login(LoginDto loginDto)
         {
-            var user = await _userManager.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
+            var user = await _userManager.Users.Include(r=>r.UserRoles).SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
 
             if (user == null){
                 return Unauthorized("Invalid username");
             } 
-
-           
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
@@ -86,11 +84,20 @@ namespace API.Controllers
                 return Unauthorized();
             }
 
+            var roles = new List<String>();
+            var userRole = user.UserRoles.Where(x=>x.RoleId==2).SingleOrDefault();
+            if(userRole!=null){
+                roles.Add("Admin");
+            }else{
+                 roles.Add("Member");
+            }
+
             string token = await _tokenService.CreateTokenAsync(user);
             return new UserRegisterDto
             {
                 Username = user.UserName,
-                Token = token
+                Token = token,
+                Roles = roles
             };
         }
 

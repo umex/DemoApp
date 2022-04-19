@@ -7,20 +7,19 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { HomeComponent } from './home/home.component';
+import { AdminGuard } from './_guard/admin.guard';
 import { AuthGuard } from './_guard/auth.guard';
 import { PreventUnsavedGuard } from './_guard/prevent-unsaved.guard';
 
 const routes: Routes = [
   {path:'', component:HomeComponent},
   {path:'book/:id', component:BookDetailComponent},
-  {path:'book/edit/:id', component:BookEditComponent, pathMatch:'full', canDeactivate:[PreventUnsavedGuard]},
+  {path:'book/edit/:id', component:BookEditComponent, pathMatch:'full', canDeactivate:[PreventUnsavedGuard], canActivate: [AdminGuard]},
   {path:'errors', component:TestErrorsComponent},
   {path:'not-found', component:NotFoundComponent},
   {path:'server-error', component:ServerErrorComponent},
   {path:'books', component:BookListComponent, canActivate: [AuthGuard]},
   {path:'**', component:HomeComponent, pathMatch:'full'}
-
-
 ];
 
 @NgModule({

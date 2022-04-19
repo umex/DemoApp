@@ -20,11 +20,19 @@
     <form [formGroup]="lendForm" (ngSubmit)="lendForm.valid && lendBook()" autocomplete="off">
       <!--<app-date-input [formControl]='lendForm.controls["lentFrom"]' [label]='"Start lending:"' ngDefaultControl></app-date-input>-->
       <app-date-input [formControl]='lendForm.controls["lendFrom"]' [label]='"Start lending:"' [minDate]='minDate' ngDefaultControl></app-date-input>
+      <div class="row mt-5" *ngIf="validationErrors.length > 0">
+        <ul class="text-danger">
+            <li *ngFor="let error of validationErrors">
+                {{error}}
+            </li>
+        </ul>
+      </div>
       <div class="form-group text-center">
         <button [disabled]="!lendForm.valid || book.lentOut" class="btn btn-lg btn-primary m-2" type="submit">Lend out</button>
         <button class="btn btn-lg btn-primary m-2" type="button" (click)="return()">Back</button>
       </div>
     </form>
+
   </div>
 </div>
 

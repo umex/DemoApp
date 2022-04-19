@@ -64,6 +64,13 @@ export class BookDetailComponent implements OnInit {
 
     this.bookService.lendBook(this.book).subscribe(() => {
       this.toastr.success('Book lend out successfully');
+    }, error => {
+      this.validationErrors = error;
+      this.book.lentOut = false;
+      this.book.lendFrom = null;
+      this.book.lendTo = null;
+      //this.validationErrors = error.error;
+      console.log('error',this.validationErrors);
     })
   }
 

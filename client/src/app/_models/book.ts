@@ -1,6 +1,6 @@
 import { AppUser } from "./appUser";
 
-export interface Book {
+export class Book {
   id: number;
   created: string;
   title: string;

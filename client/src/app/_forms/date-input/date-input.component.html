@@ -10,6 +10,7 @@
       [maxDate]='maxDate'
       [minDate]='minDate'
   >
-  <div *ngIf="ngControl.control.errors?.required" class="invalid-feedback">{{label}} is required</div>
+
+  <div *ngIf="ngControl.control.errors?.required" class="invalid-feedback">Date From is required</div>
   <div *ngIf="ngControl.control.errors?.invalidDate" class="invalid-feedback">Date cannot be more than two weeks from today</div>
 </div>
