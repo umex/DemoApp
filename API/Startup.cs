@@ -52,6 +52,7 @@ namespace API
 
             app.UseAuthorization();
 
+            //da uporablja fajle iz wwwroot
             app.UseDefaultFiles();
             app.UseStaticFiles();
             
@@ -60,6 +61,7 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                //da ve kako odreagirat ce refreshnes na endpointu
                 endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
