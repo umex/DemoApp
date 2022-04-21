@@ -56,11 +56,7 @@ namespace API
                 app.UseDefaultFiles();
                 app.UseStaticFiles();
             }
-
-            //da uporablja fajle iz wwwroot
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
-            
+           
 
 
             app.UseEndpoints(endpoints =>

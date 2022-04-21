@@ -25,7 +25,7 @@ namespace API.Extensions
 
                     // Depending on if in development or production, use either Heroku-provided
                     // connection string, or development connection string from env var.
-                    if (env == "Development")
+                    if (env.Equals("Postgres"))
                     {
                         // Use connection string from file.
                         connStr = config.GetConnectionString("DefaultConnection");
