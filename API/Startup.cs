@@ -51,6 +51,11 @@ namespace API
             app.UseAuthentication();
 
             app.UseAuthorization();
+            
+            if(!Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT").Equals("Development")){
+                app.UseDefaultFiles();
+                app.UseStaticFiles();
+            }
 
             //da uporablja fajle iz wwwroot
             app.UseDefaultFiles();
