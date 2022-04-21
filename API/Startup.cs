@@ -50,6 +50,11 @@ namespace API
             app.UseAuthentication();
 
             app.UseAuthorization();
+            
+            if(!Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT").Equals("Development")){
+                app.UseDefaultFiles();
+                app.UseStaticFiles();
+            }
 
             app.UseEndpoints(endpoints =>
             {

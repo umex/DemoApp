@@ -150,6 +150,6 @@ export class BooksService {
   }
 
   resetBookParameters() {
-    return new BookParams();
+    return this.bookParams = new BookParams()
   }
 }
