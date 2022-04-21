@@ -55,7 +55,7 @@ namespace API.Data
                  query = query.Where(u => u.Author.StartsWith(searchString));
             }
 
-            return await PagedList<BookDto>.CreateAsync(query.ProjectTo<BookDto>(_mapper.ConfigurationProvider).AsNoTracking(), bookParams.PageNumber, bookParams.PageSize);
+            return await PagedList<BookDto>.CreateAsync(query.OrderBy(x =>x.Id).ProjectTo<BookDto>(_mapper.ConfigurationProvider).AsNoTracking(), bookParams.PageNumber, bookParams.PageSize);
         }
 
         public async Task<BookDto> GetBookDtoByTitleAsync(string title)
